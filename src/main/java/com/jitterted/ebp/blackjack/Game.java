@@ -17,14 +17,15 @@ public class Game {
   private final List<Card> playerHand = new ArrayList<>();
 
   public static void main(String[] args) {
-    Game game = new Game();
-
     displayWelcome();
+    playGame();
+    resetDisplay();
+  }
 
+  private static void playGame() {
+    Game game = new Game();
     game.initialDeal();
     game.play();
-
-    resetDisplay();
   }
 
   private static void resetDisplay() {
@@ -65,6 +66,10 @@ public class Game {
 
     displayFinalGameState();
 
+    displayGameResult(playerBusted);
+  }
+
+  private void displayGameResult(boolean playerBusted) {
     if (playerBusted) {
       System.out.println("You Busted, so you lose.  💸");
     } else if (handValueOf(dealerHand) > 21) {
