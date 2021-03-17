@@ -21,6 +21,16 @@ public class HandValueAceTest {
   }
 
   @Test
+  public void handWithOneAceAndTenIsValuedAt11() throws Exception {
+    List<Card> cards = List.of(new Card(DUMMY_SUIT, "A"),
+                               new Card(DUMMY_SUIT, "10"));
+    Hand hand = new Hand(cards);
+
+    assertThat(hand.value())
+        .isEqualTo(11 + 10);
+  }
+
+  @Test
   public void handWithOneAceAndOtherCardsEqualTo11IsValuedAt1() throws Exception {
     List<Card> cards = List.of(new Card(DUMMY_SUIT, "A"),
                                new Card(DUMMY_SUIT, "8"),
