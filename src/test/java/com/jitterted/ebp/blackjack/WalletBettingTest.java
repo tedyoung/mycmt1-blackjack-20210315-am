@@ -29,6 +29,25 @@ public class WalletBettingTest {
         .isEqualTo(27 - 7 - 9);
   }
 
+  @Test
+  public void whenBetFullBalanceWalletIsEmpty() throws Exception {
+    Wallet wallet = new Wallet();
+    wallet.addMoney(33);
 
+    wallet.bet(33);
+
+    assertThat(wallet.isEmpty())
+        .isTrue();
+  }
+
+  @Test
+  public void betMoreThanBalanceThrowsException() throws Exception {
+    Wallet wallet = new Wallet();
+    wallet.addMoney(73);
+
+    assertThatThrownBy(() -> {
+      wallet.bet(74);
+    }).isInstanceOf(IllegalStateException.class);
+  }
   
 }
