@@ -36,13 +36,13 @@ public class WalletTest {
   }
 
   @Test
-  public void newWalletWhenAdd10BalanceIs10() throws Exception {
+  public void newWalletWhenAdd1BalanceIs1() throws Exception {
     Wallet wallet = new Wallet();
 
-    wallet.addMoney(10);
+    wallet.addMoney(1);
 
     assertThat(wallet.balance())
-        .isEqualTo(10);
+        .isEqualTo(1);
   }
 
   @Test
@@ -56,4 +56,21 @@ public class WalletTest {
         .isEqualTo(17 + 18);
   }
 
+  @Test
+  public void addMoneyOfZeroThrowsException() throws Exception {
+    Wallet wallet = new Wallet();
+
+    assertThatThrownBy(() -> {
+      wallet.addMoney(0);
+    }).isInstanceOf(IllegalArgumentException.class);
+  }
+
+  @Test
+  public void addMoneyOfNegativeThrowsException() throws Exception {
+    Wallet wallet = new Wallet();
+
+    assertThatThrownBy(() -> {
+      wallet.addMoney(-1);
+    }).isInstanceOf(IllegalArgumentException.class);
+  }
 }
